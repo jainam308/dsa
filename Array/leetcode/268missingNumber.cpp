@@ -2,15 +2,23 @@
 #include <iostream>
 #include<algorithm>
 using namespace std;
-bool isSorted(int arr[],int size){
-    for (int i = 0; i < size ;i++)
+int missingNumber(int arr[],int size){
+    for (int i = 0; i <= size; i++)
     {
-       if(arr[i]>arr[i+1]){
-        return false;
+         bool flag=true;
+       for (int j = 0; j< size;j++)
+       {
+        if (i == arr[j])
+        {
+           flag=false;
+           break;
+        }     
        }
-    }
-    return true;
-    
+       if (flag)
+       {
+        return i;
+       }    
+    }  
 }
 
 int main() {
@@ -24,13 +32,8 @@ int main() {
     for (int i = 0; i < size; i++)
         cin >> arr[i];
 
-    bool result=isSorted(arr,size);
-    if(result){
-        cout<<"Array is Sorted";
-    }
-    else{
-        cout<<"Array is not Sorted";
-    }
+    int result = missingNumber(arr, size);
+    cout << "Missing Number is " << result;
 
     delete[] arr; // free memory
     return 0;
